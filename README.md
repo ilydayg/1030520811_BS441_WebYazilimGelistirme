@@ -1,1 +1,3 @@
-# 1030520811_BS441_WebYazilimGelistirme
+Öğrenci Numarası: 1030520811
+Öğrenci Adı: İlayda Yegen
+Ders Adı: BS441 Web Yazılım Geliştirme
