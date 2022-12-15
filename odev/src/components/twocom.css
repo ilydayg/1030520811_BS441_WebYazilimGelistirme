@@ -1,0 +1,30 @@
+.center {
+    text-align: center;
+
+}
+
+.container {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.player {
+    margin: 50px;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+}
+
+.score {
+
+    height: 150px;
+    padding: 1px;
+    font-size: small;
+    font-weight: bold;
+    background-color: rgb(200, 200, 253);
+
+}

@@ -1,22 +1,24 @@
 import logo from './logo.svg';
+import React from "react";
 import './App.css';
+import { Link } from "react-router-dom";
+import { Home } from "./components/home"
 
-function App() {
+
+export const App = () => {
   return (
     <div className="App">
       <h1>Taş Kağıt Makas</h1>
       <img src="img/tas.jpg" />
-      <img src="img/kagıt.jpg" />
+      <img src="img/kagit.jpg" />
       <img src="img/makas.jpg" />
 
       <p>
-        Taş-kâğıt-makas, genellikle iki oyuncuyla ve üç durumdan birinin seçilmesiyle oynanan bir el oyunudur. Taş makası,
-        makas kağıdı, kâğıt da taşı yener. Eğer oyuncular aynı durumu seçerse oyun berabere biter. Kullanım alanları
-        yazı-tura, çöp çekme gibi oyunların yerine seçilebilir.
+        Taş makası kırar. Kağıt taşı kaplar. Makas kağıdı keser.
       </p>
 
-      <button type="button">Oyuna Başla</button>
-
+      <button type="button"><Link to={"/home"} className="home">bilgisayar ile oyna</Link></button>
+      <button type="button"><Link to={"/twocom"} className="twocom">iki bilgisayar ile oyna</Link></button>
     </div>
   );
 }
