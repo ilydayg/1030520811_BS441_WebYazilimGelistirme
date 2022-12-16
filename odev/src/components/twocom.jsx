@@ -1,16 +1,17 @@
 import React from "react";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.css';
 import './twocom.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export const Twocom = () => {
 
-    //const [tas, setTas] = useState("tas");
     var durum = ["tas", "kagit", "makas"];
+    var dresim = ["img/tas.jpg", "img/kagit.jpg", "img/makas.jpg"];
+    const [sec, setSec] = useState(null);
+    const [bsec, setBsec] = useState(null);
+    const [baslat, setBaslat] = useState("Oyunu Başlatınız.");
+
     const [kazanan, setKazanan] = useState("");
     const [showResults, setShowResults] = React.useState(false);
 
@@ -19,7 +20,15 @@ export const Twocom = () => {
     const [skor, setSkor] = useState(0);
     const [bskor, setBskor] = useState(0);
 
+    useEffect(() => {
+        if (showResults) {
+            setBaslat("Seçim Yapnız");
+        }
+        else {
+            setBaslat("Oyunu Başlatınız.");
+        }
 
+    }, [showResults])
 
     const onClick = () => {
         setNum(Math.floor(Math.random() * 3));
@@ -27,19 +36,51 @@ export const Twocom = () => {
         setShowResults(true);
     }
 
-    const handleClick = (secim, showResults) => {
+    const handleClick = (secim, resim) => {
 
         if (showResults) {
-            console.log(secim);
+            console.log(num);
             setBdurum(durum[num]);
+            console.log(secim);
             console.log(bdurum);
+            setSec(resim);
+            setBsec(dresim[num]);
+            console.log(bsec);
 
-            if (secim == "tas") {
-                if (bdurum == "kagit") {
+
+
+            if (secim === "tas") {
+                if (bdurum === "kagit") {
                     setKazanan("Bilgisayar");
                     setBskor((prev) => prev + 1);
                 }
-                else if (bdurum == "tas") {
+                else if (bdurum === "tas") {
+                    setKazanan("Berabere");
+                }
+                else {
+                    setKazanan("Oyuncu");
+                    setSkor((prev) => prev + 1);
+                }
+            }
+            else if (secim === "kagit") {
+                if (bdurum === "makas") {
+                    setKazanan("Bilgisayar");
+                    setBskor((prev) => prev + 1);
+                }
+                else if (bdurum === "kagit") {
+                    setKazanan("Berabere");
+                }
+                else {
+                    setKazanan("Oyuncu");
+                    setSkor((prev) => prev + 1);
+                }
+            }
+            else {
+                if (bdurum === "tas") {
+                    setKazanan("Bilgisayar");
+                    setBskor((prev) => prev + 1);
+                }
+                else if (bdurum === "makas") {
                     setKazanan("Berabere");
                 }
                 else {
@@ -49,7 +90,7 @@ export const Twocom = () => {
             }
             setShowResults(false);
         }
-    }
+    };
 
     return (
         <div className="center">
@@ -60,7 +101,7 @@ export const Twocom = () => {
                         <div>
                             Oyuncu: {skor}
                         </div>
-                        <div className="score"></div>
+                        <img className="score" src={sec} />
 
                     </div>
                     <div className="player">
@@ -68,20 +109,19 @@ export const Twocom = () => {
                         <div>
                             Bilgisayar: {bskor}
                         </div>
-                        <div className="score"></div>
+                        <img className="score" src={bsec} />
                     </div>
                 </div>
                 <div>
                     <button type="button" onClick={onClick}>Oyuna başla</button>
                 </div>
                 <div>
-                    <h5>Seçim Yap</h5>
+                    <h5>{baslat}</h5>
                     <div>
-                        <img onClick={() => handleClick(durum[0], showResults)} src="img/tas.jpg" />
-                        <img onClick={() => handleClick(durum[1], showResults)} src="img/kagit.jpg" />
-                        <img onClick={() => handleClick(durum[2], showResults)} src="img/makas.jpg" />
+                        <img onClick={() => handleClick(durum[0], dresim[0])} src="img/tas.jpg" />
+                        <img onClick={() => handleClick(durum[1], dresim[1])} src="img/kagit.jpg" />
+                        <img onClick={() => handleClick(durum[2], dresim[2])} src="img/makas.jpg" />
                     </div>
-
                     <h5>Kazanan: {kazanan}</h5>
                 </div>
             </div>
