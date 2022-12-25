@@ -1,24 +1,33 @@
 import logo from './logo.svg';
 import React from "react";
 import './App.css';
+import { Card, Button, Alert, CardGroup } from 'react-bootstrap';
+
+
 import { Link } from "react-router-dom";
 import { Home } from "./components/home"
 
 
 export const App = () => {
+  //      <Card body><img src="img/tas.jpg" /></Card>;
+
   return (
     <div className="App">
-      <h1>Taş Kağıt Makas</h1>
-      <img src="img/tas.jpg" />
-      <img src="img/kagit.jpg" />
-      <img src="img/makas.jpg" />
+      <Alert variant="success" className='mt-4'>
+        <Alert.Heading>TAŞ KAĞIT MAKAS</Alert.Heading>
+      </Alert>
+      <CardGroup className="deneme" >
+        <Card body><img src="img/tas.jpg" /></Card>
+        <Card body><img src="img/kagit.jpg" /></Card>
+        <Card body><img src="img/makas.jpg" /></Card>
+      </CardGroup>
 
-      <p>
+      <h5 className='bosluk'>
         Taş makası kırar. Kağıt taşı kaplar. Makas kağıdı keser.
-      </p>
+      </h5>
 
-      <button type="button"><Link to={"/home"} className="home">bilgisayar ile oyna</Link></button>
-      <button type="button"><Link to={"/twocom"} className="twocom">iki bilgisayar ile oyna</Link></button>
+      <Button variant="outline-info"><Link to={"/home"} className="home">Oyuncu-Bilgisayar</Link></Button>{' '}
+      <Button variant="outline-info"><Link to={"/twocom"} className="twocom">Oyuncu1-Oyuncu2</Link></Button>
     </div>
   );
 }

@@ -4,27 +4,25 @@
 }
 
 .container {
-
     display: flex;
     flex-direction: row;
     justify-content: center;
+
 }
 
 .player {
     margin: 50px;
-    width: 150px;
-    height: 150px;
+    width: 175px;
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    background-color: #d1e7dd;
 }
 
 .score {
-
-    height: 150px;
-    padding: 1px;
-    font-size: small;
-    font-weight: bold;
-    background-color: rgb(200, 200, 253);
+    height: 175px;
+    border-style: ridge;
+    border-width: 1px;
+    border-color: #d1e7dd;
+    background-color: white;
 
 }

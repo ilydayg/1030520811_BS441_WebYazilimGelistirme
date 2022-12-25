@@ -28,10 +28,21 @@
   color: #61dafb;
 }
 
+.deneme {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bosluk {
+  margin: 30px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

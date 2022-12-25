@@ -2,118 +2,162 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import './twocom.css';
 import { useState, useEffect } from "react";
+import { Card, Button, Alert, CardGroup } from 'react-bootstrap';
+
 
 
 export const Twocom = () => {
 
     var durum = ["tas", "kagit", "makas"];
     var dresim = ["img/tas.jpg", "img/kagit.jpg", "img/makas.jpg"];
+    const [oyuncu, setOyuncu] = useState("Oyuncu1");
+    const [oyuncucont, setOyuncucont] = useState(false);
+    const [oyunbitti, setOyunbitti] = useState("bbb");
     const [sec, setSec] = useState(null);
+    const [oyuncudurum, setOyuncudurum] = useState(null);
     const [bsec, setBsec] = useState(null);
     const [baslat, setBaslat] = useState("Oyunu Başlatınız.");
-
+    const [gres1, setGres1] = useState(null);
+    const [gres2, setGres2] = useState(null);
     const [kazanan, setKazanan] = useState("");
     const [showResults, setShowResults] = React.useState(false);
-
-    const [num, setNum] = useState(() => Math.floor(Math.random() * 3));
-    const [bdurum, setBdurum] = useState(durum[num]);
+    const [oyuncu2durum, setOyuncu2durum] = useState(null);
     const [skor, setSkor] = useState(0);
     const [bskor, setBskor] = useState(0);
 
+
     useEffect(() => {
         if (showResults) {
-            setBaslat("Seçim Yapnız");
+            if (oyuncucont) {
+                setBaslat("2. Oyuncu Seçim Yapabilir.");
+                setOyuncu("Oyuncu2");
+            }
+            else {
+                setBaslat("1. Oyuncu Seçim Yapabilir.");
+                setSec(null);
+                setBsec(null);
+            }
         }
         else {
             setBaslat("Oyunu Başlatınız.");
+            setOyuncu("Oyuncu1");
+            setOyuncucont(false);
+
         }
 
-    }, [showResults])
+    }, [showResults, oyuncucont])
+
+    useEffect(() => {
+        setShowResults(false);
+        console.log(oyuncudurum);
+        console.log(oyuncu2durum);
+        setSec(gres1);
+        setBsec(gres2);
+
+        if (oyuncudurum === "tas") {
+            if (oyuncu2durum === "kagit") {
+                setKazanan("Oyuncu2");
+                setBskor((prev) => prev + 1);
+            }
+            else if (oyuncu2durum === "tas") {
+                setKazanan("Berabere");
+            }
+            else {
+                setKazanan("Oyuncu");
+                setSkor((prev) => prev + 1);
+            }
+        }
+        else if (oyuncudurum === "kagit") {
+            if (oyuncu2durum === "makas") {
+                setKazanan("Oyuncu2");
+                setBskor((prev) => prev + 1);
+            }
+            else if (oyuncu2durum === "kagit") {
+                setKazanan("Berabere");
+            }
+            else {
+                setKazanan("Oyuncu");
+                setSkor((prev) => prev + 1);
+            }
+        }
+        else {
+            if (oyuncudurum !== null) {
+                if (oyuncu2durum === "tas") {
+                    setKazanan("Oyuncu2");
+                    setBskor((prev) => prev + 1);
+                }
+                else if (oyuncu2durum === "makas") {
+                    setKazanan("Berabere");
+                }
+                else {
+                    setKazanan("Oyuncu");
+                    setSkor((prev) => prev + 1);
+                }
+            }
+
+        }
+
+
+    }, [oyunbitti])
 
     const onClick = () => {
-        setNum(Math.floor(Math.random() * 3));
-        console.log(num);
         setShowResults(true);
     }
 
     const handleClick = (secim, resim) => {
-
         if (showResults) {
-            console.log(num);
-            setBdurum(durum[num]);
-            console.log(secim);
-            console.log(bdurum);
-            setSec(resim);
-            setBsec(dresim[num]);
-            console.log(bsec);
-
-
-
-            if (secim === "tas") {
-                if (bdurum === "kagit") {
-                    setKazanan("Bilgisayar");
-                    setBskor((prev) => prev + 1);
-                }
-                else if (bdurum === "tas") {
-                    setKazanan("Berabere");
-                }
-                else {
-                    setKazanan("Oyuncu");
-                    setSkor((prev) => prev + 1);
-                }
-            }
-            else if (secim === "kagit") {
-                if (bdurum === "makas") {
-                    setKazanan("Bilgisayar");
-                    setBskor((prev) => prev + 1);
-                }
-                else if (bdurum === "kagit") {
-                    setKazanan("Berabere");
-                }
-                else {
-                    setKazanan("Oyuncu");
-                    setSkor((prev) => prev + 1);
-                }
+            if (oyuncu === "Oyuncu1") {
+                setOyuncucont(true);
+                setOyuncudurum(secim);
+                setGres1(resim);
+                // console.log("aaaa");
+                /*  setNum(Math.floor(Math.random() * 3));
+                */
             }
             else {
-                if (bdurum === "tas") {
-                    setKazanan("Bilgisayar");
-                    setBskor((prev) => prev + 1);
-                }
-                else if (bdurum === "makas") {
-                    setKazanan("Berabere");
+                //console.log("bbbb");
+                setOyuncu2durum(secim);
+                setGres2(resim);
+
+
+                if (oyunbitti === "bbb") {
+                    setOyunbitti("aaa");
                 }
                 else {
-                    setKazanan("Oyuncu");
-                    setSkor((prev) => prev + 1);
+                    setOyunbitti("bbb");
                 }
             }
-            setShowResults(false);
+
+            // setShowResults(false);
         }
-    };
+    }
+
 
     return (
         <div className="center">
-            <h2>Taş Kağıt Makas</h2>
+            <Alert variant="success" className='mt-4'>
+                <Alert.Heading>TAŞ KAĞIT MAKAS</Alert.Heading>
+            </Alert>
             <div>
                 <div className="container">
                     <div className="player">
                         <div>
-                            Oyuncu: {skor}
+                            Oyuncu1: {skor}
                         </div>
                         <img className="score" src={sec} />
 
                     </div>
+
                     <div className="player">
 
                         <div>
-                            Bilgisayar: {bskor}
+                            Oyuncu2: {bskor}
                         </div>
                         <img className="score" src={bsec} />
                     </div>
                 </div>
                 <div>
-                    <button type="button" onClick={onClick}>Oyuna başla</button>
+                    <button type="button" class="btn btn-outline-info" onClick={onClick}>Oyuna başla</button>
                 </div>
                 <div>
                     <h5>{baslat}</h5>

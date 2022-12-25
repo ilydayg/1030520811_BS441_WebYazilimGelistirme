@@ -23,7 +23,9 @@ export const Home = () => {
 
     useEffect(() => {
         if (showResults) {
-            setBaslat("Seçim Yapnız");
+            setBaslat("Seçim Yapınız");
+            setBsec(null);
+            setSec(null);
         }
         else {
             setBaslat("Oyunu Başlatınız.");
@@ -43,9 +45,9 @@ export const Home = () => {
 
     useEffect(() => {
         if (bdurum !== null) {
-            console.log(num);
-            console.log(bdurum);
-            console.log(bsec);
+            /*  console.log(num);
+               console.log(bdurum);
+               console.log(bsec);*/
             if (oyuncudurum === "tas") {
                 if (bdurum === "kagit") {
                     setKazanan("Bilgisayar");
@@ -93,9 +95,13 @@ export const Home = () => {
     }, [bdurum])
 
     const onClick = () => {
-        setShowResults(true);
-        setNum(null);
-        setBdurum(null);
+        if (baslat === "Oyunu Başlatınız.") {
+            setShowResults(true);
+            setNum(null);
+            setBdurum(null);
+
+        }
+
     }
 
     const handleClick = (secim, resim) => {
