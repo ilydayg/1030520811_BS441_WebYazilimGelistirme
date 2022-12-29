@@ -1,7 +1,9 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import './twocom.css';
+import './mod.css';
 import { useState, useEffect } from "react";
+import { Card, Button, Alert, CardGroup } from 'react-bootstrap';
+
 
 
 export const Home = () => {
@@ -45,9 +47,6 @@ export const Home = () => {
 
     useEffect(() => {
         if (bdurum !== null) {
-            /*  console.log(num);
-               console.log(bdurum);
-               console.log(bsec);*/
             if (oyuncudurum === "tas") {
                 if (bdurum === "kagit") {
                     setKazanan("Bilgisayar");
@@ -117,7 +116,9 @@ export const Home = () => {
 
     return (
         <div className="center">
-            <h2>Taş Kağıt Makas</h2>
+            <Alert variant="success" className='mt-4'>
+                <Alert.Heading>TAŞ KAĞIT MAKAS</Alert.Heading>
+            </Alert>
             <div>
                 <div className="container">
                     <div className="player">
@@ -136,14 +137,14 @@ export const Home = () => {
                     </div>
                 </div>
                 <div>
-                    <button type="button" onClick={onClick}>Oyuna başla</button>
+                    <button type="button" class="btn btn-outline-danger" onClick={onClick}>Oyuna başla</button>
                 </div>
                 <div>
                     <h5>{baslat}</h5>
                     <div>
-                        <img onClick={() => handleClick(durum[0], dresim[0])} src="img/tas.jpg" />
-                        <img onClick={() => handleClick(durum[1], dresim[1])} src="img/kagit.jpg" />
-                        <img onClick={() => handleClick(durum[2], dresim[2])} src="img/makas.jpg" />
+                        <img className="buton" onClick={() => handleClick(durum[0], dresim[0])} src="img/tas.jpg" />
+                        <img className="buton" onClick={() => handleClick(durum[1], dresim[1])} src="img/kagit.jpg" />
+                        <img className="buton" onClick={() => handleClick(durum[2], dresim[2])} src="img/makas.jpg" />
                     </div>
                     <h5>Kazanan: {kazanan}</h5>
                 </div>

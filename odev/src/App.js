@@ -1,11 +1,9 @@
-import logo from './logo.svg';
 import React from "react";
 import './App.css';
 import { Card, Button, Alert, CardGroup } from 'react-bootstrap';
 
 
 import { Link } from "react-router-dom";
-import { Home } from "./components/home"
 
 
 export const App = () => {

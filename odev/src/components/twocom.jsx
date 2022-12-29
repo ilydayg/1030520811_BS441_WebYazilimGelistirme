@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import './twocom.css';
+import './mod.css';
 import { useState, useEffect } from "react";
 import { Card, Button, Alert, CardGroup } from 'react-bootstrap';
 
@@ -63,7 +63,7 @@ export const Twocom = () => {
                 setKazanan("Berabere");
             }
             else {
-                setKazanan("Oyuncu");
+                setKazanan("Oyuncu1");
                 setSkor((prev) => prev + 1);
             }
         }
@@ -76,7 +76,7 @@ export const Twocom = () => {
                 setKazanan("Berabere");
             }
             else {
-                setKazanan("Oyuncu");
+                setKazanan("Oyuncu1");
                 setSkor((prev) => prev + 1);
             }
         }
@@ -90,7 +90,7 @@ export const Twocom = () => {
                     setKazanan("Berabere");
                 }
                 else {
-                    setKazanan("Oyuncu");
+                    setKazanan("Oyuncu1");
                     setSkor((prev) => prev + 1);
                 }
             }
@@ -110,12 +110,9 @@ export const Twocom = () => {
                 setOyuncucont(true);
                 setOyuncudurum(secim);
                 setGres1(resim);
-                // console.log("aaaa");
-                /*  setNum(Math.floor(Math.random() * 3));
-                */
+
             }
             else {
-                //console.log("bbbb");
                 setOyuncu2durum(secim);
                 setGres2(resim);
 
@@ -128,7 +125,6 @@ export const Twocom = () => {
                 }
             }
 
-            // setShowResults(false);
         }
     }
 
@@ -157,14 +153,14 @@ export const Twocom = () => {
                     </div>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-outline-info" onClick={onClick}>Oyuna başla</button>
+                    <button type="button" class="btn btn-outline-danger" onClick={onClick}>Oyuna başla</button>
                 </div>
                 <div>
                     <h5>{baslat}</h5>
                     <div>
-                        <img onClick={() => handleClick(durum[0], dresim[0])} src="img/tas.jpg" />
-                        <img onClick={() => handleClick(durum[1], dresim[1])} src="img/kagit.jpg" />
-                        <img onClick={() => handleClick(durum[2], dresim[2])} src="img/makas.jpg" />
+                        <img className="buton" onClick={() => handleClick(durum[0], dresim[0])} src="img/tas.jpg" />
+                        <img className="buton" onClick={() => handleClick(durum[1], dresim[1])} src="img/kagit.jpg" />
+                        <img className="buton" onClick={() => handleClick(durum[2], dresim[2])} src="img/makas.jpg" />
                     </div>
                     <h5>Kazanan: {kazanan}</h5>
                 </div>
